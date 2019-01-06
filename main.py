@@ -1,6 +1,6 @@
 
 def main():
-    pass
+    print('certo')
 
 if __name__ == '__main__':
     main()
