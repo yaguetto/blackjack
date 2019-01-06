@@ -1,6 +1,9 @@
 
 def main():
-    print('certo')
+    print('♣')
+
+class baralho(self):
+    pass
 
 if __name__ == '__main__':
     main()
