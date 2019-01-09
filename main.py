@@ -1,7 +1,7 @@
 
 def main():
     baralho = criar_baralho()
-    print('baralho criado')
+    print('baralho criado com', len(baralho), 'cartas')
 
 
     # ♠ ♣ ♥ ♦
