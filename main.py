@@ -2,6 +2,8 @@
 def main():
     baralho = criar_baralho()
     print('baralho criado com', len(baralho), 'cartas')
+    sortear_carta(baralho)
+    print('carta sortada:',baralho)
 
 def criar_baralho():
     baralho_real = []
@@ -45,6 +47,11 @@ class Fichas:
         self.qtd_fichas = self.qtd_fichas + qtd_ganha
         return self.qtd_fichas
 
+def sortear_carta(baralho):
+    from random import randint
+    x = randint(0,52)
+    print(baralho[x])
+    baralho.pop(x)
 
 if __name__ == '__main__':
     main()
