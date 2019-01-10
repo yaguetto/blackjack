@@ -50,8 +50,27 @@ class Fichas:
 def sortear_carta(baralho):
     from random import randint
     x = randint(0,52)
-    print(baralho[x])
+    carta_sorteada = baralho[x]
     baralho.pop(x)
+    return carta_sorteada
+
+def dar_valor_a_carta(carta_sorteada):
+    if carta_sorteada[0] == int(carta_sorteada[0]) or carta_sorteada[0:2] == '10':
+        valor_carta = carta_sorteada[0]
+        return valor_carta
+    elif carta_sorteada[0] == "A":
+        y = carta_sorteada[0]
+        def carta_as(y):
+            carta_a = input('quer que a carta seja 1 ou 11?')
+            if carta_a == '1' or carta_a == '11':
+                valor_carta = int(carta_a)
+                return valor_carta
+            else:
+                carta_a = input('escolha apenas 1 ou 11:')
+                carta_as(carta_a)
+    else:
+        valor_carta = 10
+        return valor_carta
 
 if __name__ == '__main__':
     main()
