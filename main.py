@@ -2,8 +2,8 @@
 def main():
     baralho = criar_baralho()
     print('baralho criado com', len(baralho), 'cartas')
-    sortear_carta(baralho)
-    print('carta sortada:',baralho)
+    cartas = cartas_iniciais(baralho)
+    print('cartas sortada:', cartas)
 
 def criar_baralho():
     baralho_real = []
@@ -65,6 +65,11 @@ def dar_valor_a_carta(carta_sorteada):
         valor_carta = 10
         return valor_carta
 
+def cartas_iniciais(baralho):
+    baralho_jogador = []
+    for x in range(0,2):
+        baralho_jogador.append(sortear_carta(baralho))
+    return baralho_jogador
 
 
 if __name__ == '__main__':
