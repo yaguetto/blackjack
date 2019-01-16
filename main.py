@@ -7,12 +7,13 @@ def main():
     cartas_iniciais(baralho, baralho_jogador)
     print('cartas jog:', baralho_jogador)
     cartas_iniciais(baralho, baralho_dealer)
-    for l1 in baralho_jogador:
-        print(dar_valor_a_carta(l1))     
-    print('cartas dealer', baralho_dealer)
-    for l in baralho_dealer:
-        print(dar_valor_a_carta(l))
-    print(dar_valor_a_carta(l1)+dar_valor_a_carta(l))
+    # for l1 in baralho_jogador:
+    #     print(dar_valor_a_carta(l1))     
+    # print('cartas dealer', baralho_dealer)
+    # for l in baralho_dealer:
+    #     print(dar_valor_a_carta(l))
+    # print(dar_valor_a_carta(l1)+dar_valor_a_carta(l))
+    jogada_jogador(baralho, baralho_jogador, baralho_dealer)
 
 def criar_baralho():
     baralho_real = []
@@ -86,14 +87,6 @@ def cartas_iniciais(baralho, baralho_atual):
 
 def dealer(baralho, baralho_dealer):
     pass
-
-def pedir_carta(baralho, baralho_jogador):
-    x = input('quer mais uma carta?')
-    x = x.upper()
-    if x == 'sim':
-        baralho_jogador.append(sortear_carta(baralho))
-    #elif x == 'não':
-     #   y = input('quer acabar o jogo?')
             
 def verificar_ganhou(baralho_jogador, baralho_dealer):
     cont_jog = 0
@@ -108,6 +101,19 @@ def verificar_ganhou(baralho_jogador, baralho_dealer):
         print('você perdeu!')
     else:
         print('você ganhou!')
+
+def jogada_jogador(baralho, baralho_jogador, baralho_dealer):
+
+    resp = input('quer comprar carta?')
+
+    if resp.upper() == 'SIM':
+        baralho_jogador.append(sortear_carta(baralho))
+        print('esse é seu baralho:', baralho_jogador)
+    elif resp.upper() == 'NÃO' or resp.upper() == 'NAO':
+        verificar_ganhou(baralho_jogador, baralho_dealer)
+    else:
+        print('favor escolher apenas sim ou nao.')
+        jogada_jogador(baralho, baralho_jogador, baralho_dealer)
 
 
 if __name__ == '__main__':
