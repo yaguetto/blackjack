@@ -3,17 +3,17 @@ def main():
     baralho = criar_baralho()
     print('baralho criado com', len(baralho), 'cartas')
     baralho_jogador = []
-    baralho_dealer = []
-    cartas_iniciais(baralho, baralho_jogador)
-    print('cartas jog:', baralho_jogador)
-    cartas_iniciais(baralho, baralho_dealer)
+    baralho_dealer = [] 
+    cartas_iniciais(baralho, baralho_jogador, baralho_dealer)
+    print(baralho_dealer)
+    print(dealer(baralho, baralho_dealer))
     # for l1 in baralho_jogador:
     #     print(dar_valor_a_carta(l1))     
     # print('cartas dealer', baralho_dealer)
     # for l in baralho_dealer:
     #     print(dar_valor_a_carta(l))
     # print(dar_valor_a_carta(l1)+dar_valor_a_carta(l))
-    jogada_jogador(baralho, baralho_jogador, baralho_dealer)
+    #jogada_jogador(baralho, baralho_jogador, baralho_dealer)
 
 def criar_baralho():
     baralho_real = []
@@ -59,35 +59,41 @@ class Fichas:
 
 def sortear_carta(baralho):
     from random import randint
-    x = randint(0,52)
+    x = randint(0,len(baralho)-1)
+    print('erro:', x)
     carta_sorteada = baralho[x]
     baralho.pop(x)
     return carta_sorteada
 
 def dar_valor_a_carta(carta_sorteada):
     try:
-        if int(carta_sorteada[0]) in range(0,10):
-            valor_carta = int(carta_sorteada[0])
-            return valor_carta
-    except:
         if carta_sorteada[0:2] == '10':
             valor_carta = 10
             return valor_carta
-        elif carta_sorteada[0] == "A":
-            valor_carta = 1
-            return valor_carta  
-        else:
-            valor_carta = 10
+        elif int(carta_sorteada[0]) in range(1,10):
+            valor_carta = int(carta_sorteada[0])
             return valor_carta
+        elif carta_sorteada[0] == "A":
+            valor_carta = 1 
+            return valor_carta 
+    except:
+        valor_carta = 10
+        return valor_carta
 
-def cartas_iniciais(baralho, baralho_atual):
+def cartas_iniciais(baralho, baralho_jogador, baralho_dealer):
     for x in range(0,2):
-        baralho_atual.append(sortear_carta(baralho))
-    return baralho_atual
+        baralho_jogador.append(sortear_carta(baralho))
+        baralho_dealer.append(sortear_carta(baralho))
+    return baralho_jogador, baralho_dealer
 
 def dealer(baralho, baralho_dealer):
-    pass
-            
+    print('carta virada pra cima: ', baralho_dealer[0])
+    cont_dealer = 0
+    for x in baralho_dealer:
+        y = dar_valor_a_carta(x)
+        cont_dealer = cont_dealer + y
+    return cont_dealer
+    
 def verificar_ganhou(baralho_jogador, baralho_dealer):
     cont_jog = 0
     cont_dealer = 0
@@ -96,11 +102,11 @@ def verificar_ganhou(baralho_jogador, baralho_dealer):
     for x in baralho_dealer:
         cont_dealer = cont_dealer + dar_valor_a_carta(x)
     if cont_jog > 21:
-        print('você perdeu!')
+        return False
     elif (21 - cont_jog) > (21 - cont_dealer):
-        print('você perdeu!')
+        return False
     else:
-        print('você ganhou!')
+        return True
 
 def jogada_jogador(baralho, baralho_jogador, baralho_dealer):
 
@@ -109,6 +115,8 @@ def jogada_jogador(baralho, baralho_jogador, baralho_dealer):
     if resp.upper() == 'SIM':
         baralho_jogador.append(sortear_carta(baralho))
         print('esse é seu baralho:', baralho_jogador)
+        if verificar_ganhou(baralho_jogador, baralho_dealer) == False:
+            print('você perdeu.')
     elif resp.upper() == 'NÃO' or resp.upper() == 'NAO':
         verificar_ganhou(baralho_jogador, baralho_dealer)
     else:
