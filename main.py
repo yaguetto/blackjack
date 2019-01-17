@@ -134,6 +134,11 @@ def jogador(baralho, baralho_jogador, baralho_dealer):
             jogador(baralho, baralho_jogador, baralho_dealer)
     if resp.upper() == 'NÃO' or resp.upper() == 'NAO':
         verificar_ganhou(baralho_jogador, baralho_dealer)
+        resp1 = input('quer jogar novamente? (favor responder apenas sim ou nao)')
+        if resp1.upper() == 'SIM':
+            main()
+        elif resp1.upper() == 'NÃO' or resp1.upper() == 'NAO': 
+            quit()
     else:
         print('favor escolher apenas sim ou nao.')
         jogador(baralho, baralho_jogador, baralho_dealer)
