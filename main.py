@@ -110,10 +110,16 @@ def verificar_ganhou(baralho_jogador, baralho_dealer):
         cont_dealer = cont_dealer + dar_valor_a_carta(x)
     if cont_jog > 21:
         print('você perdeu')
+        print('soma dealer:', cont_dealer)
+        print('sua soma:', cont_jog)
     elif cont_dealer > 21 and cont_jog < 21:
         print('você ganhou')
+        print('soma dealer:', cont_dealer)
+        print('sua soma:', cont_jog)
     elif (21 - cont_jog) > (21 - cont_dealer):
         print('você perdeu')
+        print('soma dealer:', cont_dealer)
+        print('sua soma:', cont_jog)
 
 def jogador(baralho, baralho_jogador, baralho_dealer):
     
