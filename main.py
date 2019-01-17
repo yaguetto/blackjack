@@ -6,7 +6,6 @@ def main():
     cartas_iniciais(baralho, baralho_jogador, baralho_dealer)
     print('carta virada do dealer:', baralho_dealer[0])
     dealer(baralho, baralho_dealer)
-    print('baralho dealer', baralho_dealer)
     jogador(baralho, baralho_jogador, baralho_dealer)
 
 def criar_baralho():
